@@ -154,7 +154,10 @@ void KadenzePlugin1AudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
     {
         auto* channelData = buffer.getWritePointer (channel);
 
-        // ..do something to the data...
+        for (int sample = 0; sample < buffer.getNumSamples(); sample++)
+        {
+            channelData[sample] *= 0.5;
+        }
     }
 }
 
