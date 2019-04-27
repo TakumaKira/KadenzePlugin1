@@ -57,7 +57,7 @@ public:
 
 private:
     
-    AudioParameterFloat* mGainPrameter;
+    AudioParameterFloat* mGainParameter;
     float mGainSmoothed;
     
     //==============================================================================

@@ -24,13 +24,13 @@ KadenzePlugin1AudioProcessor::KadenzePlugin1AudioProcessor()
                        )
 #endif
 {
-    addParameter(mGainPrameter = new AudioParameterFloat("gain",
+    addParameter(mGainParameter = new AudioParameterFloat("gain",
                                                          "Gain",
                                                          0.0f,
                                                          1.0f,
                                                          0.5f));
     
-    mGainSmoothed = mGainPrameter->get();
+    mGainSmoothed = mGainParameter->get();
 }
 
 KadenzePlugin1AudioProcessor::~KadenzePlugin1AudioProcessor()
@@ -162,7 +162,7 @@ void KadenzePlugin1AudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
 
     for (int sample = 0; sample < buffer.getNumSamples(); sample++)
     {
-        mGainSmoothed = mGainSmoothed - 0.004*(mGainSmoothed-mGainPrameter->get());
+        mGainSmoothed = mGainSmoothed - 0.004*(mGainSmoothed-mGainParameter->get());
         
         channelLeft[sample] *= mGainSmoothed;
         channelRight[sample] *= mGainSmoothed;
