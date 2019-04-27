@@ -29,6 +29,8 @@ KadenzePlugin1AudioProcessor::KadenzePlugin1AudioProcessor()
                                                          0.0f,
                                                          1.0f,
                                                          0.5f));
+    
+    mGainSmoothed = mGainPrameter->get();
 }
 
 KadenzePlugin1AudioProcessor::~KadenzePlugin1AudioProcessor()
@@ -155,14 +157,15 @@ void KadenzePlugin1AudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        auto* channelData = buffer.getWritePointer (channel);
+    float* channelLeft = buffer.getWritePointer(0);
+    float* channelRight = buffer.getWritePointer(1);
 
-        for (int sample = 0; sample < buffer.getNumSamples(); sample++)
-        {
-            channelData[sample] *= mGainPrameter->get();
-        }
+    for (int sample = 0; sample < buffer.getNumSamples(); sample++)
+    {
+        mGainSmoothed = mGainSmoothed - 0.004*(mGainSmoothed-mGainPrameter->get());
+        
+        channelLeft[sample] *= mGainSmoothed;
+        channelRight[sample] *= mGainSmoothed;
     }
 }
 

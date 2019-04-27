@@ -58,6 +58,7 @@ public:
 private:
     
     AudioParameterFloat* mGainPrameter;
+    float mGainSmoothed;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KadenzePlugin1AudioProcessor)
