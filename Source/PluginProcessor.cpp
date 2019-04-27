@@ -172,13 +172,12 @@ void KadenzePlugin1AudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
 //==============================================================================
 bool KadenzePlugin1AudioProcessor::hasEditor() const
 {
-    return false; // (change this to false if you choose to not supply an editor)
+    return true; // (change this to false if you choose to not supply an editor)
 }
 
 AudioProcessorEditor* KadenzePlugin1AudioProcessor::createEditor()
 {
-//    return new KadenzePlugin1AudioProcessorEditor (*this);
-    return nullptr;
+    return new KadenzePlugin1AudioProcessorEditor (*this);
 }
 
 //==============================================================================
