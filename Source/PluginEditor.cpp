@@ -19,9 +19,14 @@ KadenzePlugin1AudioProcessorEditor::KadenzePlugin1AudioProcessorEditor (KadenzeP
     // editor's size to whatever you need it to be.
     setSize (400, 300);
     
+    auto& params = processor.getParameters();
+    AudioParameterFloat* gainParameter = (AudioParameterFloat*)params.getUnchecked(0);
+
     mGainControlSlider.setBounds(0, 0, 100, 100);
     mGainControlSlider.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
     mGainControlSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
+    mGainControlSlider.setRange(gainParameter->range.start, gainParameter->range.end);
+    mGainControlSlider.setValue(*gainParameter);
     mGainControlSlider.addListener(this);
     addAndMakeVisible(mGainControlSlider);
 }
