@@ -20,6 +20,8 @@ KadenzePlugin1AudioProcessorEditor::KadenzePlugin1AudioProcessorEditor (KadenzeP
     setSize (400, 300);
     
     mGainControlSlider.setBounds(0, 0, 100, 100);
+    mGainControlSlider.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
+    mGainControlSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
     addAndMakeVisible(mGainControlSlider);
 }
 
