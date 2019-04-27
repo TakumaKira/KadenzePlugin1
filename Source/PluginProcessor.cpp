@@ -160,8 +160,6 @@ void KadenzePlugin1AudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
     float* channelLeft = buffer.getWritePointer(0);
     float* channelRight = buffer.getWritePointer(1);
     
-    DBG(*mGainParameter);
-
     for (int sample = 0; sample < buffer.getNumSamples(); sample++)
     {
         mGainSmoothed = mGainSmoothed - 0.004*(mGainSmoothed-mGainParameter->get());
