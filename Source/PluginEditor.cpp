@@ -49,5 +49,14 @@ void KadenzePlugin1AudioProcessorEditor::resized()
 
 void KadenzePlugin1AudioProcessorEditor::sliderValueChanged (Slider* slider)
 {
+    auto& params = processor.getParameters();
+    
+    if (slider == &mGainControlSlider) {
+        
+        AudioParameterFloat* gainParameter = (AudioParameterFloat*)params.getUnchecked(0);
+        *gainParameter = mGainControlSlider.getValue();
+        DBG("GAIN SLIDER HAS CHANGED");
+    }
+    
     DBG("SLIDER VALUE CHANGED");
 }

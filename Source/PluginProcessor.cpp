@@ -159,6 +159,8 @@ void KadenzePlugin1AudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
     // interleaved by keeping the same state.
     float* channelLeft = buffer.getWritePointer(0);
     float* channelRight = buffer.getWritePointer(1);
+    
+    DBG(*mGainParameter);
 
     for (int sample = 0; sample < buffer.getNumSamples(); sample++)
     {
