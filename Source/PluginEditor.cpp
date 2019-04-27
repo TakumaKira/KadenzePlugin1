@@ -28,8 +28,16 @@ KadenzePlugin1AudioProcessorEditor::KadenzePlugin1AudioProcessorEditor (KadenzeP
     mGainControlSlider.setRange(gainParameter->range.start, gainParameter->range.end);
     mGainControlSlider.setValue(*gainParameter);
     
+    mGainControlSlider.onDragStart = [gainParameter] {
+        gainParameter->beginChangeGesture();
+    };
+
     mGainControlSlider.onValueChange = [this, gainParameter] {
         *gainParameter = mGainControlSlider.getValue();
+    };
+    
+    mGainControlSlider.onDragEnd = [gainParameter] {
+        gainParameter->endChangeGesture();
     };
     
     addAndMakeVisible(mGainControlSlider);
